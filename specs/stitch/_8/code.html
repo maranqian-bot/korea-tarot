@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;family=Manrope:wght@400;600;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #121222;
+            color: #e3e0f8;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(30, 30, 47, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .bloom-primary {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 15px rgba(220, 184, 255, 0.6);
+        }
+
+        .celestial-gradient {
+            background: linear-gradient(135deg, #8a2be2 0%, #96049d 100%);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 8s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+
+        .card-reveal:hover {
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.4);
+            border-color: rgba(220, 184, 255, 0.5);
+        }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: rotate(45deg);
+            transition: 0.8s;
+        }
+        
+        .shimmer:hover::after {
+            left: 100%;
+            top: 100%;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#8a2be2",
+                        "on-tertiary-container": "#e2e1e1",
+                        "surface-bright": "#38374a",
+                        "surface-dim": "#121222",
+                        "surface-container-high": "#29283a",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-secondary-container": "#ffaff9",
+                        "secondary-container": "#96049d",
+                        "tertiary": "#c6c6c6",
+                        "on-primary-container": "#eed9ff",
+                        "on-primary-fixed-variant": "#6700b5",
+                        "on-surface-variant": "#cfc2d7",
+                        "surface-container-low": "#1a1a2b",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "secondary": "#ffaaf9",
+                        "primary": "#dcb8ff",
+                        "surface-container-highest": "#333345",
+                        "on-error": "#690005",
+                        "background": "#121222",
+                        "surface-tint": "#dcb8ff",
+                        "surface-container": "#1e1e2f",
+                        "secondary-fixed": "#ffd6f8",
+                        "on-secondary-fixed-variant": "#7f0086",
+                        "on-surface": "#e3e0f8",
+                        "on-secondary": "#5a005f",
+                        "primary-fixed-dim": "#dcb8ff",
+                        "outline": "#988ca0",
+                        "surface-variant": "#333345",
+                        "primary-fixed": "#efdbff",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#2f3131",
+                        "inverse-primary": "#8422dc",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#2f2f40",
+                        "tertiary-container": "#636464",
+                        "surface": "#121222",
+                        "on-secondary-fixed": "#37003a",
+                        "on-primary-fixed": "#2c0051",
+                        "on-primary": "#480081",
+                        "outline-variant": "#4c4354",
+                        "inverse-surface": "#e3e0f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "2rem",
+                        "margin-edge": "4rem",
+                        "card-padding": "2.5rem",
+                        "section-gap": "8rem",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Bodoni Moda"],
+                        "title-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "label-sm": ["Manrope"],
+                        "headline-lg-mobile": ["Bodoni Moda"],
+                        "display-lg": ["Bodoni Moda"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "title-md": ["20px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="selection:bg-primary/30">
+<!-- Top Navigation -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_0_20px_rgba(138,43,226,0.2)] docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center px-margin-edge h-20 w-full mx-auto">
+<div class="font-headline-lg text-headline-lg bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                운세왕국
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-title-md text-title-md text-primary border-b-2 border-primary pb-1" href="#">오늘의 운세</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">타로 보기</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">사주 풀이</a>
+<a class="font-title-md text-title-md text-on-surface-variant hover:text-primary transition-colors" href="#">궁합 보기</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors px-4 py-2">로그인</button>
+<button class="font-label-sm text-label-sm bg-primary text-on-primary px-6 py-2.5 rounded-full scale-95 active:scale-90 transition-transform shadow-lg shadow-primary/20">마이페이지</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[90vh] w-full flex items-center justify-center overflow-hidden">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Crystal Ball Hero" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVFWUqPOSTv7IyDvh9SqtoxVYOBwFvpaIRxLn9fbAiBFMkZhFbPxZnmN-_cJQRCWnTwaNBlRIp8tLo8aJoRlY1pBmBG8jaq-72tUbg-5bCCrfqFEvhav3IuXvEea8GBc-_xASeymOovUO7t9u5kFQYUtyUfycmdyhi9wgKNk_t6Lwr7LuHBNIJ7M9Dl0kQfJime8C96ZpunwhsRTPzxUAltL9XrLiDgCvLC3LZiA3YW4cxUG-bWBJyiK-Rxf2SVc4EkY1hrWpdwhY"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background"></div>
+</div>
+<!-- Hero Content -->
+<div class="relative z-10 text-center px-margin-edge max-w-4xl">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md mb-8 animate-float">
+<span class="material-symbols-outlined text-[18px] text-primary">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest">COSMIC ORACLE IS OPEN</span>
+</div>
+<h1 class="font-display-lg text-display-lg md:text-[80px] glow-text mb-6">
+                    신비로운 <span class="text-primary italic">운명</span>의 부름
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+                    별들이 속삭이는 당신의 미래를 확인하세요. 수천 년의 지혜와 현대적 감각이 만나 당신의 길을 비추는 영롱한 등불이 됩니다.
+                </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="celestial-gradient text-white px-10 py-5 rounded-full font-title-md text-title-md flex items-center gap-3 shimmer bloom-primary transition-all hover:scale-105 active:scale-95">
+                        운명 확인하기
+                        <span class="material-symbols-outlined">star_rate</span>
+</button>
+<button class="px-10 py-5 rounded-full font-title-md text-title-md border border-silver/30 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all">
+                        더 알아보기
+                    </button>
+</div>
+</div>
+<!-- Floating Decoration Elements -->
+<div class="absolute top-1/4 left-10 opacity-30 animate-float-delayed hidden lg:block">
+<span class="material-symbols-outlined text-[64px] text-primary">stars</span>
+</div>
+<div class="absolute bottom-1/4 right-10 opacity-30 animate-float hidden lg:block">
+<span class="material-symbols-outlined text-[64px] text-secondary">compost</span>
+</div>
+</section>
+<!-- Category Bento Grid -->
+<section class="py-section-gap px-margin-edge max-w-container-max mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">운세 카테고리</h2>
+<div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Daily Fortune -->
+<div class="glass-panel p-card-padding rounded-3xl group cursor-pointer card-reveal transition-all duration-500 hover:-translate-y-2">
+<div class="mb-6 relative h-24 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-colors"></div>
+<!-- Using crop from category image via background sizing -->
+<div class="w-20 h-20 bg-no-repeat bg-contain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4yOrwOAWuKypedU9-Tgm6Oq1THRU9aPqMvH-zfKoX4omaLWEQhvMR4Vrd2T3ePfbfavVjV1P8_1FYXIfrSUuKhasHBO9sB4LwLOuroaV7YiUUL9QUC4nxBr6MMwiI-2YiOWsSyZyZHttYXmJ30y42-iQU7Z0qHfZaw90M8oe5pFg9wb4tWxFDABl8IkQqbuE2c4O2UfckPkF6555FeVHmUauIK-6CYMf3I-gIeKL9S5i74WjQATsZEDqmbhiaDYEfK5r8Z3zAtRk'); background-position: left top;"></div>
+</div>
+<h3 class="font-title-md text-title-md text-primary mb-3">오늘의 운세</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-6">매일 아침 당신의 에너지를 확인하고 행운의 아이템을 만나보세요.</p>
+<div class="flex items-center text-primary font-label-sm tracking-wider group-hover:gap-4 transition-all">
+                        EXPLORE <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- Tarot Reading -->
+<div class="glass-panel p-card-padding rounded-3xl group cursor-pointer card-reveal transition-all duration-500 hover:-translate-y-2">
+<div class="mb-6 relative h-24 flex items-center justify-center">
+<div class="absolute inset-0 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-colors"></div>
+<div class="w-20 h-20 bg-no-repeat bg-contain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4yOrwOAWuKypedU9-Tgm6Oq1THRU9aPqMvH-zfKoX4omaLWEQhvMR4Vrd2T3ePfbfavVjV1P8_1FYXIfrSUuKhasHBO9sB4LwLOuroaV7YiUUL9QUC4nxBr6MMwiI-2YiOWsSyZyZHttYXmJ30y42-iQU7Z0qHfZaw90M8oe5pFg9wb4tWxFDABl8IkQqbuE2c4O2UfckPkF6555FeVHmUauIK-6CYMf3I-gIeKL9S5i74WjQATsZEDqmbhiaDYEfK5r8Z3zAtRk'); background-position: 33% top;"></div>
+</div>
+<h3 class="font-title-md text-title-md text-secondary mb-3">타로 보기</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-6">신비로운 카드가 전하는 무의식의 메시지를 깊이 있게 해석해 드립니다.</p>
+<div class="flex items-center text-secondary font-label-sm tracking-wider group-hover:gap-4 transition-all">
+                        SELECT <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- Saju Analysis -->
+<div class="glass-panel p-card-padding rounded-3xl group cursor-pointer card-reveal transition-all duration-500 hover:-translate-y-2">
+<div class="mb-6 relative h-24 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary-container/10 rounded-full blur-2xl group-hover:bg-primary-container/20 transition-colors"></div>
+<div class="w-20 h-20 bg-no-repeat bg-contain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4yOrwOAWuKypedU9-Tgm6Oq1THRU9aPqMvH-zfKoX4omaLWEQhvMR4Vrd2T3ePfbfavVjV1P8_1FYXIfrSUuKhasHBO9sB4LwLOuroaV7YiUUL9QUC4nxBr6MMwiI-2YiOWsSyZyZHttYXmJ30y42-iQU7Z0qHfZaw90M8oe5pFg9wb4tWxFDABl8IkQqbuE2c4O2UfckPkF6555FeVHmUauIK-6CYMf3I-gIeKL9S5i74WjQATsZEDqmbhiaDYEfK5r8Z3zAtRk'); background-position: 66% top;"></div>
+</div>
+<h3 class="font-title-md text-title-md text-primary-fixed-dim mb-3">사주 풀이</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-6">태어난 시간 속에 숨겨진 평생의 흐름과 운명의 지도를 분석합니다.</p>
+<div class="flex items-center text-primary-fixed-dim font-label-sm tracking-wider group-hover:gap-4 transition-all">
+                        ANALYZE <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+</div>
+</div>
+<!-- Compatibility -->
+<div class="glass-panel p-card-padding rounded-3xl group cursor-pointer card-reveal transition-all duration-500 hover:-translate-y-2">
+<div class="mb-6 relative h-24 flex items-center justify-center">
+<div class="absolute inset-0 bg-secondary-container/10 rounded-full blur-2xl group-hover:bg-secondary-container/20 transition-colors"></div>
+<div class="w-20 h-20 bg-no-repeat bg-contain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD4yOrwOAWuKypedU9-Tgm6Oq1THRU9aPqMvH-zfKoX4omaLWEQhvMR4Vrd2T3ePfbfavVjV1P8_1FYXIfrSUuKhasHBO9sB4LwLOuroaV7YiUUL9QUC4nxBr6MMwiI-2YiOWsSyZyZHttYXmJ30y42-iQU7Z0qHfZaw90M8oe5pFg9wb4tWxFDABl8IkQqbuE2c4O2UfckPkF6555FeVHmUauIK-6CYMf3I-gIeKL9S5i74WjQATsZEDqmbhiaDYEfK5r8Z3zAtRk'); background-position: right top;"></div>
+</div>
+<h3 class="font-title-md text-title-md text-secondary-fixed-dim mb-3">궁합 보기</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-6">두 인연의 조화와 갈등, 그리고 함께 나아갈 최선의 방향을 제시합니다.</p>
+<div class="flex items-center text-secondary-fixed-dim font-label-sm tracking-wider group-hover:gap-4 transition-all">
+                        MATCH <span class="material-symbols-outlined ml-2 text-[18px]">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Branding & Trust Section -->
+<section class="relative py-section-gap overflow-hidden">
+<div class="absolute inset-0 opacity-20">
+<img alt="Background Pattern" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZff9btHFldtDWhRXIOmnxMPyJR2cZj6qMVnleFzJ8tPPPsxlGjCPcpEFezzar7YcJ0K4eN9StKJknprNWgblEjZPTZ0wVaEe6kWD0vHgyprRRCVRTapgkr80grRn_V4DU_D7E4o0eVD9749Q_NhS9TUPaOLvpGrJpyfUtf83DOXAt-GY9oYUHmE-qe88rSwKCDUMjEQKwxQ-lSEYm5R-Hbt5cbF3dFyHgwF5rhKhsEpsS3C34dttGfMNnrf1uRnIlwoGUL-CLxyM"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
+</div>
+<div class="relative z-10 px-margin-edge max-w-container-max mx-auto flex flex-col items-center text-center">
+<div class="mb-8">
+<span class="material-symbols-outlined text-[48px] text-primary glow-text">all_inclusive</span>
+</div>
+<h2 class="font-display-lg text-display-lg md:text-[56px] mb-8 leading-tight">
+                    당신의 이야기가 <br/>
+<span class="text-secondary">여기에서 시작됩니다</span>
+</h2>
+<div class="max-w-2xl text-body-lg text-on-surface-variant mb-12">
+                    운세왕국은 단순히 미래를 점치는 곳이 아닙니다. 당신의 내면과 우주가 연결되는 순간을 디자인하며, 매일 더 나은 선택을 할 수 있도록 영감을 제공합니다.
+                </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 w-full max-w-4xl border-t border-outline-variant/30 pt-12">
+<div class="flex flex-col items-center">
+<span class="font-headline-lg text-primary glow-text mb-2">12M+</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-tighter">Daily Users</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-headline-lg text-secondary glow-text mb-2">99%</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-tighter">Accuracy Score</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-headline-lg text-primary glow-text mb-2">500+</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-tighter">Tarot Decks</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-headline-lg text-secondary glow-text mb-2">24/7</span>
+<span class="font-label-sm text-on-surface-variant uppercase tracking-tighter">Cosmic Guide</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 w-full py-12">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-edge gap-gutter w-full max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-headline-lg text-headline-lg text-on-surface">운세왕국</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 운세왕국. All celestial rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">이용약관</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">개인정보처리방침</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">제휴문의</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">고객센터</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] text-tertiary">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] text-tertiary">share</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Mouse tracking glow effect for cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Subtle lift effect based on mouse position
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const tiltX = (y - centerY) / 20;
+                const tiltY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-8px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // Atmospheric parallax on scroll
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const heroImage = document.querySelector('section img');
+            if(heroImage) {
+                heroImage.style.transform = `translateY(${scroll * 0.4}px)`;
+            }
+        });
+    </script>
+</body></html>
