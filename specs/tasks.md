@@ -1,9 +1,9 @@
 ## Phase 1: Setup
 
-- [ ] T001 GitHub repo 초기 구조 생성
-- [ ] T002 frontend / backend / ai-server 폴더 분리
+- [x] T001 GitHub repo 초기 구조 생성
+- [x] T002 frontend / backend / ai-server 폴더 분리
 - [ ] T003 Spring Boot 프로젝트 생성
-- [ ] T004 React + Vite 프로젝트 생성
+- [x] T004 React + Vite 프로젝트 생성
 - [ ] T005 FastAPI 프로젝트 생성
 - [ ] T006 env.example 작성
 
@@ -91,15 +91,15 @@
 
 ## Phase 9: Frontend
 
-- [ ] T052 메인 페이지 구현
-- [ ] T053 로그인 페이지 구현
-- [ ] T054 회원가입 페이지 구현
-- [ ] T055 고민 입력 페이지 구현
-- [ ] T056 카드 선택 페이지 구현
+- [x] T052 메인 페이지 구현
+- [x] T053 로그인 페이지 구현
+- [x] T054 회원가입 페이지 구현
+- [x] T055 고민 입력 페이지 구현
+- [x] T056 카드 선택 페이지 구현
 - [ ] T057 카드 flip animation 구현
-- [ ] T058 AI 해석 결과 페이지 구현
-- [ ] T059 마이페이지 상담 기록 목록 구현
-- [ ] T060 상담 상세 페이지 구현
+- [x] T058 AI 해석 결과 페이지 구현
+- [x] T059 마이페이지 상담 기록 목록 구현
+- [x] T060 상담 상세 페이지 구현
 
 ---
 
