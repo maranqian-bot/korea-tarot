@@ -1,0 +1,311 @@
+<!DOCTYPE html><html class="dark" lang="ko"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(30, 30, 47, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-input:focus {
+            box-shadow: 0 0 15px rgba(220, 184, 255, 0.4);
+            border-color: #dcb8ff;
+        }
+        .celestial-gradient {
+            background: linear-gradient(135deg, #8a2be2 0%, #96049d 100%);
+        }
+        .bloom-primary {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(220, 184, 255, 0.6);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(138, 43, 226, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(138, 43, 226, 0.7); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: rotate(45deg);
+            transition: 0.8s;
+        }
+        .shimmer:hover::after {
+            left: 100%;
+            top: 100%;
+        }
+        body {
+            background-color: #121222;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 170, 249, 0.1) 0%, transparent 40%);
+            overflow-x: hidden;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-error-container": "#ffdad6",
+                        "primary-container": "#8a2be2",
+                        "on-tertiary-container": "#e2e1e1",
+                        "surface-bright": "#38374a",
+                        "surface-dim": "#121222",
+                        "surface-container-high": "#29283a",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-secondary-container": "#ffaff9",
+                        "secondary-container": "#96049d",
+                        "tertiary": "#c6c6c6",
+                        "on-primary-container": "#eed9ff",
+                        "on-primary-fixed-variant": "#6700b5",
+                        "on-surface-variant": "#cfc2d7",
+                        "surface-container-low": "#1a1a2b",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "secondary": "#ffaaf9",
+                        "primary": "#dcb8ff",
+                        "surface-container-highest": "#333345",
+                        "on-error": "#690005",
+                        "background": "#121222",
+                        "surface-tint": "#dcb8ff",
+                        "surface-container": "#1e1e2f",
+                        "secondary-fixed": "#ffd6f8",
+                        "on-secondary-fixed-variant": "#7f0086",
+                        "on-surface": "#e3e0f8",
+                        "on-secondary": "#5a005f",
+                        "primary-fixed-dim": "#dcb8ff",
+                        "outline": "#988ca0",
+                        "surface-variant": "#333345",
+                        "primary-fixed": "#efdbff",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#2f3131",
+                        "inverse-primary": "#8422dc",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#2f2f40",
+                        "tertiary-container": "#636464",
+                        "surface": "#121222",
+                        "on-secondary-fixed": "#37003a",
+                        "on-primary-fixed": "#2c0051",
+                        "on-primary": "#480081",
+                        "outline-variant": "#4c4354",
+                        "inverse-surface": "#e3e0f8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-edge": "4rem",
+                        "container-max": "1440px",
+                        "section-gap": "8rem",
+                        "card-padding": "2.5rem",
+                        "gutter": "2rem"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Bodoni Moda"],
+                        "headline-lg": ["Bodoni Moda"],
+                        "label-sm": ["Manrope"],
+                        "title-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Bodoni Moda"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "title-md": ["20px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col text-on-surface selection:bg-primary/30">
+<!-- Cosmic Background (Fixed) -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+<img alt="Cosmic Nebula Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVFWUqPOSTv7IyDvh9SqtoxVYOBwFvpaIRxLn9fbAiBFMkZhFbPxZnmN-_cJQRCWnTwaNBlRIp8tLo8aJoRlY1pBmBG8jaq-72tUbg-5bCCrfqFEvhav3IuXvEea8GBc-_xASeymOovUO7t9u5kFQYUtyUfycmdyhi9wgKNk_t6Lwr7LuHBNIJ7M9Dl0kQfJime8C96ZpunwhsRTPzxUAltL9XrLiDgCvLC3LZiA3YW4cxUG-bWBJyiK-Rxf2SVc4EkY1hrWpdwhY">
+<div class="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background"></div>
+<div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(#dcb8ff 0.5px, transparent 0.5px); background-size: 50px 50px;"></div>
+</div>
+<!-- Main Registration Content -->
+<main class="flex-grow flex items-center justify-center py-20 px-6">
+<div class="glass-panel w-full rounded-[2rem] relative overflow-hidden max-w-md p-6 md:p-8">
+<!-- Decorative Glow Elements -->
+<div class="absolute -top-20 -right-20 w-64 h-64 bg-primary-container/20 blur-[100px] rounded-full"></div>
+<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary-container/20 blur-[100px] rounded-full"></div>
+<!-- Header Section -->
+<header class="text-center relative z-10">
+<div class="inline-flex items-center gap-2 px-4 rounded-full border border-primary/30 bg-primary/10 backdrop-blur-md mb-6 py-1 mb-4">
+<span class="material-symbols-outlined text-[18px] text-primary">auto_awesome</span>
+<span class="font-label-sm text-label-sm text-primary tracking-widest uppercase">Join the Kingdom</span>
+</div>
+<h1 class="font-display-lg text-primary mb-4 glow-text tracking-tight text-[28px] md:text-[32px]">운세왕국</h1>
+<p class="text-on-surface-variant max-w-lg mx-auto text-[16px]">새로운 운명의 장을 열기 위한 여정을 시작하세요.</p>
+</header>
+<!-- Registration Form -->
+<form action="#" class="grid grid-cols-1 gap-x-gutter relative z-10 md:grid-cols-1 gap-y-4">
+<!-- 이름 (Name) -->
+<div class="flex flex-col gap-2.5">
+<label class="font-label-sm text-primary flex items-center gap-2 uppercase tracking-widest text-[10px]">
+<span class="material-symbols-outlined text-[18px]">person</span>
+                        이름
+                    </label>
+<input class="w-full bg-surface-container-low/40 border border-outline-variant/30 rounded-xl text-on-surface placeholder:text-on-surface-variant/30 outline-none transition-all glow-input py-2 text-[15px]" placeholder="성함을 입력하세요" type="text">
+</div>
+<!-- 아이디 (ID) -->
+<div class="flex flex-col gap-2.5">
+<label class="font-label-sm text-primary flex items-center gap-2 uppercase tracking-widest text-[10px]">
+<span class="material-symbols-outlined text-[18px]">fingerprint</span>
+                        아이디
+                    </label>
+<input class="w-full bg-surface-container-low/40 border border-outline-variant/30 rounded-xl text-on-surface placeholder:text-on-surface-variant/30 outline-none transition-all glow-input py-2 text-[15px]" placeholder="희망하는 아이디" type="text">
+</div>
+<!-- 비밀번호 (Password) -->
+<div class="flex flex-col gap-2.5">
+<label class="font-label-sm text-primary flex items-center gap-2 uppercase tracking-widest text-[10px]">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+                        비밀번호
+                    </label>
+<input class="w-full bg-surface-container-low/40 border border-outline-variant/30 rounded-xl text-on-surface placeholder:text-on-surface-variant/30 outline-none transition-all glow-input py-2 text-[15px]" placeholder="영문, 숫자 포함 8자 이상" type="password">
+</div>
+<!-- 비밀번호 확인 (Confirm Password) -->
+<div class="flex flex-col gap-2.5">
+<label class="font-label-sm text-primary flex items-center gap-2 uppercase tracking-widest text-[10px]">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+                        비밀번호 확인
+                    </label>
+<input class="w-full bg-surface-container-low/40 border border-outline-variant/30 rounded-xl text-on-surface placeholder:text-on-surface-variant/30 outline-none transition-all glow-input py-2 text-[15px]" placeholder="비밀번호를 다시 입력하세요" type="password">
+</div>
+<!-- 이메일 (Email) + 인증 -->
+<div class="flex flex-col gap-2.5 md:col-span-2">
+<label class="font-label-sm text-primary flex items-center gap-2 uppercase tracking-widest text-[10px]">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                        이메일
+                    </label>
+<div class="flex flex-col sm:flex-row gap-3">
+<input class="flex-grow bg-surface-container-low/40 border border-outline-variant/30 rounded-xl text-on-surface placeholder:text-on-surface-variant/30 outline-none transition-all glow-input py-2 text-[15px]" placeholder="example@destiny.com" type="email">
+<button class="px-8 bg-surface-variant/50 hover:bg-primary-container/30 text-primary border border-primary/20 rounded-xl font-label-sm transition-all whitespace-nowrap shimmer py-2 text-[14px]" type="button">
+                            인증번호 전송
+                        </button>
+</div>
+</div>
+<!-- 이메일 인증 (Email Verification Code) -->
+<div class="flex flex-col gap-2.5 md:col-span-2">
+<label class="font-label-sm text-primary flex items-center gap-2 uppercase tracking-widest text-[10px]">
+<span class="material-symbols-outlined text-[18px]">key</span>
+                        이메일 인증번호
+                    </label>
+<input class="w-full bg-surface-container-low/40 border border-outline-variant/30 rounded-xl text-on-surface placeholder:text-on-surface-variant/30 outline-none transition-all glow-input py-2 text-[15px]" placeholder="6자리 인증코드를 입력하세요" type="text">
+</div>
+<!-- Terms & Conditions -->
+<div class="md:col-span-2 py-4">
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center mt-1">
+<input class="w-5 h-5 rounded border-outline-variant/30 bg-surface-container-low/60 text-primary focus:ring-primary/20 transition-all cursor-pointer p-3" type="checkbox">
+</div>
+<span class="font-body-lg text-on-surface-variant text-[14px] leading-relaxed">
+                            운세왕국의 <span class="text-primary hover:underline underline-offset-4 cursor-pointer">이용약관</span> 및 <span class="text-primary hover:underline underline-offset-4 cursor-pointer">개인정보처리방침</span>에 동의하며, 나의 운명을 기록할 준비가 되었습니다.
+                        </span>
+</label>
+</div>
+<!-- Submit Button -->
+<div class="md:col-span-2 mt-2">
+<button class="celestial-gradient w-full rounded-full font-title-md text-white tracking-[0.2em] shadow-xl hover:scale-[1.01] active:scale-[0.98] transition-all animate-pulse-glow group relative overflow-hidden bloom-primary py-3 text-[18px]" type="submit">
+<span class="relative z-10 flex items-center justify-center gap-3">
+                            회원가입
+                            <span class="material-symbols-outlined">auto_fix_high</span>
+</span>
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</button>
+</div>
+</form>
+<!-- Footer Links within Panel -->
+<div class="mt-12 text-center relative z-10">
+<p class="text-on-surface-variant text-[14px]">
+                    이미 운명과 연결되어 있나요? 
+                    <a class="text-primary font-bold hover:text-secondary transition-colors underline underline-offset-8 ml-2" href="#">로그인</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Branded Footer -->
+<footer class="bg-surface-container-lowest/80 border-t border-outline-variant/20 w-full py-12 backdrop-blur-md">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-edge gap-gutter w-full max-w-container-max mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-headline-lg text-[28px] text-on-surface bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">운세왕국</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant/60">© 2024 운세왕국. All celestial rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" href="#">이용약관</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" href="#">개인정보처리방침</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" href="#">제휴문의</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest" href="#">고객센터</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-primary/10 transition-all text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]">public</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-primary/10 transition-all text-on-surface-variant hover:text-primary" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for input fields
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                const label = input.previousElementSibling;
+                if (label && label.tagName === 'LABEL') {
+                    label.classList.add('translate-x-2');
+                    label.classList.add('text-secondary');
+                    label.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+                }
+            });
+            input.addEventListener('blur', () => {
+                const label = input.previousElementSibling;
+                if (label && label.tagName === 'LABEL') {
+                    label.classList.remove('translate-x-2');
+                    label.classList.remove('text-secondary');
+                }
+            });
+        });
+
+        // Dynamic background parallax
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const bgImage = document.querySelector('.fixed img');
+            if (bgImage) {
+                bgImage.style.transform = `scale(1.1) translateY(${scroll * 0.15}px)`;
+            }
+        });
+    </script>
+
+
+</body></html>

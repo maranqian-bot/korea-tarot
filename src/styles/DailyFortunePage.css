@@ -1,0 +1,139 @@
+.daily-page {
+  display: grid;
+  gap: 2rem;
+}
+
+.daily-hero {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.daily-hero__date {
+  margin: 0 0 0.5rem;
+  color: var(--color-on-surface-variant);
+}
+
+.daily-score {
+  width: min(460px, 100%);
+  margin: 2rem auto 0;
+  padding: 2rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.daily-score__ring {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at center, rgba(18, 18, 34, 0.95) 42%, transparent 43%),
+    conic-gradient(var(--color-primary-deep) 0 320deg, rgba(76, 67, 84, 0.35) 320deg);
+  box-shadow: var(--shadow-bloom);
+}
+
+.daily-score__ring span {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--color-primary);
+}
+
+.daily-score__label {
+  margin: 0 0 0.35rem;
+  color: var(--color-on-surface-variant);
+}
+
+.daily-score__copy {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--color-secondary);
+}
+
+.daily-bars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.daily-bar {
+  border-radius: 1.5rem;
+  padding: 1.3rem;
+}
+
+.daily-bar header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.daily-bar h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.daily-bar__track {
+  height: 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.daily-bar__fill {
+  height: 100%;
+  border-radius: inherit;
+}
+
+.daily-bar__fill.is-primary {
+  background: linear-gradient(90deg, #8422dc, #dcb8ff);
+}
+
+.daily-bar__fill.is-secondary {
+  background: linear-gradient(90deg, #96049d, #ffaaf9);
+}
+
+.daily-bar__fill.is-tertiary {
+  background: linear-gradient(90deg, #7e7e87, #c6c6c6);
+}
+
+.daily-bar__fill.is-error {
+  background: linear-gradient(90deg, #93000a, #ffb4ab);
+}
+
+.daily-guides {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.daily-guide {
+  padding: 1.8rem;
+  border-radius: 1.75rem;
+}
+
+.daily-guide h2 {
+  margin-top: 0;
+  font-family: var(--font-display);
+  color: var(--color-primary);
+}
+
+.daily-guide p {
+  margin-bottom: 0;
+  color: var(--color-on-surface-variant);
+  line-height: 1.8;
+}
+
+@media (max-width: 980px) {
+  .daily-bars,
+  .daily-guides {
+    grid-template-columns: 1fr;
+  }
+
+  .daily-score {
+    flex-direction: column;
+  }
+}
