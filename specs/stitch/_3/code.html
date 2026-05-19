@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>오늘의 운세 - 운세왕국</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&amp;family=Be+Vietnam+Pro:wght@300;400;500;700&amp;family=Manrope:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#2f2f40",
+                      "surface-bright": "#38374a",
+                      "secondary-container": "#96049d",
+                      "inverse-surface": "#e3e0f8",
+                      "primary-fixed": "#efdbff",
+                      "secondary-fixed-dim": "#ffaaf9",
+                      "surface-container-low": "#1a1a2b",
+                      "surface-container-high": "#29283a",
+                      "on-tertiary": "#2f3131",
+                      "background": "#121222",
+                      "surface-container": "#1e1e2f",
+                      "surface-variant": "#333345",
+                      "on-tertiary-fixed-variant": "#464747",
+                      "on-secondary-fixed-variant": "#7f0086",
+                      "tertiary-container": "#636464",
+                      "on-primary-fixed": "#2c0051",
+                      "on-primary": "#480081",
+                      "primary-container": "#8a2be2",
+                      "on-secondary-container": "#ffaff9",
+                      "on-tertiary-fixed": "#1a1c1c",
+                      "primary": "#dcb8ff",
+                      "inverse-primary": "#8422dc",
+                      "surface-container-lowest": "#0c0c1d",
+                      "on-error": "#690005",
+                      "error": "#ffb4ab",
+                      "on-surface": "#e3e0f8",
+                      "on-secondary": "#5a005f",
+                      "error-container": "#93000a",
+                      "secondary": "#ffaaf9",
+                      "surface-dim": "#121222",
+                      "on-surface-variant": "#cfc2d7",
+                      "on-secondary-fixed": "#37003a",
+                      "on-background": "#e3e0f8",
+                      "outline": "#988ca0",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "secondary-fixed": "#ffd6f8",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-highest": "#333345",
+                      "on-primary-container": "#eed9ff",
+                      "on-primary-fixed-variant": "#6700b5",
+                      "primary-fixed-dim": "#dcb8ff",
+                      "surface-tint": "#dcb8ff",
+                      "outline-variant": "#4c4354",
+                      "surface": "#121222",
+                      "tertiary": "#c6c6c6",
+                      "tertiary-fixed": "#e3e2e2",
+                      "on-tertiary-container": "#e2e1e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-edge": "4rem",
+                      "container-max": "1440px",
+                      "section-gap": "8rem",
+                      "card-padding": "2.5rem",
+                      "gutter": "2rem"
+              },
+              "fontFamily": {
+                      "display-lg": ["Bodoni Moda"],
+                      "headline-lg": ["Bodoni Moda"],
+                      "label-sm": ["Manrope"],
+                      "title-md": ["Be Vietnam Pro"],
+                      "body-lg": ["Be Vietnam Pro"],
+                      "headline-lg-mobile": ["Bodoni Moda"]
+              },
+              "fontSize": {
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "title-md": ["20px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background: radial-gradient(circle at 50% 50%, #1e1e2f 0%, #0c0c1d 100%);
+            color: #e3e0f8;
+            overflow-x: hidden;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+        .glass-panel {
+            background: rgba(51, 51, 69, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 184, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .bloom-primary {
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+        }
+        .circular-progress {
+            transition: stroke-dashoffset 2s ease-out;
+        }
+        .gold-filigree {
+            border: 1px solid transparent;
+            background-image: linear-gradient(rgba(18, 18, 34, 0.8), rgba(18, 18, 34, 0.8)), linear-gradient(45deg, #dcb8ff, #ffd6f8, #dcb8ff);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+    </style>
+</head>
+<body class="font-body-lg text-body-lg min-h-screen">
+<div class="fixed inset-0 pointer-events-none z-0" id="star-container"></div>
+<!-- Navigation Shell -->
+<header class="flex justify-between items-center w-full px-margin-edge py-4 fixed top-0 z-50 bg-surface/60 backdrop-blur-[20px] border-b border-outline-variant/30 shadow-[0_0_30px_rgba(138,43,226,0.2)]">
+<div class="font-display-lg text-title-md font-bold text-primary tracking-widest drop-shadow-[0_0_15px_rgba(220,184,255,0.5)]">운세왕국</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm" href="#">오늘의 운세</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm text-label-sm" href="#">타로 보기</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm text-label-sm" href="#">사주 풀이</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm text-label-sm" href="#">궁합 보기</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-primary-container/20 p-2 rounded-full transition-all">account_circle</button>
+<span class="hidden md:inline font-label-sm text-label-sm text-primary">마이페이지</span>
+</div>
+</header>
+<main class="relative z-10 pt-32 pb-24 px-4 md:px-margin-edge max-w-container-max mx-auto">
+<!-- Hero Section: Total Fortune -->
+<section class="flex flex-col items-center mb-section-gap">
+<div class="text-center mb-12">
+<h1 class="font-display-lg text-display-lg text-primary mb-2 drop-shadow-sm">오늘의 천운</h1>
+<p class="text-on-surface-variant font-title-md">2024년 5월 20일, 당신의 별자리가 속삭이는 메시지</p>
+</div>
+<div class="relative w-80 h-80 flex items-center justify-center">
+<!-- SVG Progress Ring -->
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-variant" cx="160" cy="160" fill="transparent" r="145" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-container circular-progress filter drop-shadow-[0_0_15px_rgba(138,43,226,0.8)]" cx="160" cy="160" fill="transparent" id="total-score-ring" r="145" stroke="currentColor" stroke-dasharray="911" stroke-dashoffset="911" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-on-surface-variant font-label-sm tracking-widest uppercase">종합운</span>
+<span class="font-display-lg text-[84px] text-primary leading-none" id="score-text">0</span>
+<span class="text-secondary font-title-md mt-2">매우 길함</span>
+</div>
+<!-- Orbiting Star effect -->
+<div class="absolute inset-0 animate-[spin_10s_linear_infinite] pointer-events-none">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-[0_0_20px_#dcb8ff]"></div>
+</div>
+</div>
+</section>
+<!-- Category Grid: Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-section-gap">
+<!-- Love Luck -->
+<div class="glass-panel p-card-padding rounded-xl flex flex-col items-center text-center hover:scale-[1.02] transition-transform duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4" data-weight="fill">favorite</span>
+<h3 class="font-title-md text-on-surface mb-2">연애운</h3>
+<div class="w-full h-1.5 bg-surface-variant rounded-full mb-4 overflow-hidden">
+<div class="h-full bg-secondary bloom-primary w-[85%] rounded-full"></div>
+</div>
+<p class="text-on-surface-variant text-sm">새로운 인연이 서쪽에서 찾아올 기운이 강합니다.</p>
+</div>
+<!-- Wealth Luck -->
+<div class="glass-panel p-card-padding rounded-xl flex flex-col items-center text-center hover:scale-[1.02] transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" data-weight="fill">payments</span>
+<h3 class="font-title-md text-on-surface mb-2">금전운</h3>
+<div class="w-full h-1.5 bg-surface-variant rounded-full mb-4 overflow-hidden">
+<div class="h-full bg-primary bloom-primary w-[70%] rounded-full"></div>
+</div>
+<p class="text-on-surface-variant text-sm">계획에 없던 지출을 조심하면 큰 이득이 생깁니다.</p>
+</div>
+<!-- Work Luck -->
+<div class="glass-panel p-card-padding rounded-xl flex flex-col items-center text-center hover:scale-[1.02] transition-transform duration-300">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-4" data-weight="fill">work</span>
+<h3 class="font-title-md text-on-surface mb-2">직장운</h3>
+<div class="w-full h-1.5 bg-surface-variant rounded-full mb-4 overflow-hidden">
+<div class="h-full bg-tertiary bloom-primary w-[92%] rounded-full"></div>
+</div>
+<p class="text-on-surface-variant text-sm">동료들과의 협업이 빛을 발해 성과가 뛰어납니다.</p>
+</div>
+<!-- Health Luck -->
+<div class="glass-panel p-card-padding rounded-xl flex flex-col items-center text-center hover:scale-[1.02] transition-transform duration-300">
+<span class="material-symbols-outlined text-error text-4xl mb-4" data-weight="fill">ecg_heart</span>
+<h3 class="font-title-md text-on-surface mb-2">건강운</h3>
+<div class="w-full h-1.5 bg-surface-variant rounded-full mb-4 overflow-hidden">
+<div class="h-full bg-error bloom-primary w-[65%] rounded-full"></div>
+</div>
+<p class="text-on-surface-variant text-sm">충분한 수면이 필요한 시기입니다. 명상이 도움됩니다.</p>
+</div>
+</div>
+<!-- Lucky Items Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Lucky Item -->
+<div class="relative overflow-hidden group glass-panel rounded-2xl h-[400px]">
+<img alt="Lucky Item" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 group-hover:scale-110 transition-transform duration-700" data-alt="A macro photograph of an ornate, antique silver key resting on a bed of dark purple velvet, surrounded by glowing mystical dust particles and soft celestial lighting. The atmosphere is enigmatic and magical, with deep violet and midnight blue tones dominating the composition to match a high-end dark fantasy UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm-y1NuyxNlhaA01BHYmivf17ht01deexGqz_50AVlrK-ojDx38QwJasgcGU00bZZmtobhNIM4GzlgFlXeMrshUdPgCD1D-CUCGw2S9H6KqSxOI6lzi9uMIOgs2YxbDrrNECdCOgj5TEKkGgCeDA10LXUvHzMvGTpmQCk7XuXTomHAR7KX_ppfRl3kGdEooNfsFLQkSDyvukr_cKliaSRKHJDjWjf9zienGBeS011hQaqInts0LQpb_4FJkaB0rFu2Hg5B-Zv_czc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent p-card-padding flex flex-col justify-end">
+<span class="font-label-sm text-primary mb-2">행운의 아이템</span>
+<h2 class="font-headline-lg text-on-surface mb-4">빈티지 열쇠</h2>
+<p class="text-on-surface-variant font-body-lg max-w-md">막혀있던 고민을 해결해줄 상징입니다. 오늘 당신의 주머니 속에 작은 금속 열쇠를 지녀보세요.</p>
+</div>
+</div>
+<!-- Lucky Color -->
+<div class="glass-panel p-card-padding rounded-2xl flex flex-col justify-center border-l-8 border-primary-container">
+<div class="flex items-center gap-6 mb-6">
+<div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-secondary shadow-[0_0_30px_rgba(220,184,255,0.6)]"></div>
+<div>
+<span class="font-label-sm text-secondary">행운의 컬러</span>
+<h2 class="font-headline-lg text-on-surface">미스틱 바이올렛</h2>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-lg">창의력과 영감을 불러일으키는 색상입니다. 의상이나 액세서리에 보라색 포인트를 주면 긍정적인 에너지가 흐릅니다.</p>
+<div class="mt-8 flex gap-2">
+<div class="px-4 py-2 bg-surface-container rounded-full text-xs text-on-surface-variant border border-outline-variant/30">#DCB8FF</div>
+<div class="px-4 py-2 bg-surface-container rounded-full text-xs text-on-surface-variant border border-outline-variant/30">#8A2BE2</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-edge flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest/80 backdrop-blur-md border-t border-outline-variant/20 relative z-10">
+<div class="flex flex-col items-center md:items-start">
+<div class="font-display-lg text-headline-lg text-primary mb-2">운세왕국</div>
+<p class="text-tertiary font-body-lg text-center md:text-left">© 2024 운세왕국 (Fortune Kingdom). 당신의 운명은 별들 사이에 새겨져 있습니다.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg" href="#">이용약관</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg" href="#">개인정보처리방침</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg" href="#">제휴문의</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg" href="#">고객지원</a>
+</div>
+</footer>
+<script>
+        // Star background generator
+        const starContainer = document.getElementById('star-container');
+        const starCount = 150;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            starContainer.appendChild(star);
+        }
+
+        // Score animation logic
+        window.addEventListener('load', () => {
+            const finalScore = 88;
+            const ring = document.getElementById('total-score-ring');
+            const scoreDisplay = document.getElementById('score-text');
+            const radius = 145;
+            const circumference = 2 * Math.PI * radius;
+            
+            // Set initial dashoffset
+            ring.style.strokeDasharray = circumference;
+            ring.style.strokeDashoffset = circumference;
+
+            let currentScore = 0;
+            const duration = 2000; // 2 seconds
+            const intervalTime = 20;
+            const increment = finalScore / (duration / intervalTime);
+
+            const timer = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= finalScore) {
+                    currentScore = finalScore;
+                    clearInterval(timer);
+                }
+                scoreDisplay.textContent = Math.floor(currentScore);
+                
+                const offset = circumference - (currentScore / 100) * circumference;
+                ring.style.strokeDashoffset = offset;
+            }, intervalTime);
+        });
+
+        // Interactive mouse glow effect for glass panels
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mousemove', (e) => {
+                const rect = panel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                panel.style.setProperty('--mouse-x', `${x}px`);
+                panel.style.setProperty('--mouse-y', `${y}px`);
+                panel.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(220, 184, 255, 0.15), rgba(51, 51, 69, 0.4))`;
+            });
+            panel.addEventListener('mouseleave', () => {
+                panel.style.background = 'rgba(51, 51, 69, 0.4)';
+            });
+        });
+    </script>
+</body></html>

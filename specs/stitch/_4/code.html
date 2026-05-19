@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>운세왕국 - 타로 보기</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#38374a",
+                    "tertiary": "#c6c6c6",
+                    "primary": "#dcb8ff",
+                    "primary-fixed-dim": "#dcb8ff",
+                    "error-container": "#93000a",
+                    "on-primary-fixed": "#2c0051",
+                    "on-error-container": "#ffdad6",
+                    "secondary": "#ffaaf9",
+                    "on-error": "#690005",
+                    "on-background": "#e3e0f8",
+                    "on-primary-container": "#eed9ff",
+                    "inverse-surface": "#e3e0f8",
+                    "primary-container": "#8a2be2",
+                    "surface": "#121222",
+                    "secondary-fixed": "#ffd6f8",
+                    "primary-fixed": "#efdbff",
+                    "error": "#ffb4ab",
+                    "surface-variant": "#333345",
+                    "surface-container-low": "#1a1a2b",
+                    "outline-variant": "#4c4354",
+                    "on-surface": "#e3e0f8",
+                    "inverse-on-surface": "#2f2f40",
+                    "secondary-fixed-dim": "#ffaaf9",
+                    "surface-container-highest": "#333345",
+                    "tertiary-fixed": "#e3e2e2",
+                    "surface-tint": "#dcb8ff",
+                    "on-secondary": "#5a005f",
+                    "secondary-container": "#96049d",
+                    "tertiary-container": "#636464",
+                    "surface-container": "#1e1e2f",
+                    "on-secondary-fixed": "#37003a",
+                    "surface-container-lowest": "#0c0c1d",
+                    "on-tertiary-container": "#e2e1e1",
+                    "on-primary": "#480081",
+                    "on-surface-variant": "#cfc2d7",
+                    "on-primary-fixed-variant": "#6700b5",
+                    "surface-container-high": "#29283a",
+                    "on-tertiary": "#2f3131",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "background": "#121222",
+                    "surface-dim": "#121222",
+                    "on-secondary-container": "#ffaff9",
+                    "inverse-primary": "#8422dc",
+                    "outline": "#988ca0",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-secondary-fixed-variant": "#7f0086"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "2rem",
+                    "margin-edge": "4rem",
+                    "container-max": "1440px",
+                    "section-gap": "8rem",
+                    "card-padding": "2.5rem"
+            },
+            "fontFamily": {
+                    "title-md": ["Be Vietnam Pro"],
+                    "display-lg": ["Bodoni Moda"],
+                    "headline-lg": ["Bodoni Moda"],
+                    "headline-lg-mobile": ["Bodoni Moda"],
+                    "label-sm": ["Manrope"],
+                    "body-lg": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "title-md": ["20px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0c0c1d;
+            overflow-x: hidden;
+            color: #e3e0f8;
+        }
+
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a2b 0%, #0c0c1d 100%);
+        }
+
+        .tarot-card-container {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            cursor: pointer;
+            transform-origin: center bottom;
+            aspect-ratio: 160 / 260;
+            width: 160px;
+            height: 260px;
+            border-radius: 0.75rem; /* xl */
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .tarot-card-container:hover {
+            transform: translate(var(--tw-translate-x), calc(var(--tw-translate-y) - 30px)) rotate(var(--tw-rotate)) scale(1.05) !important;
+            box-shadow: 0 0 30px rgba(220, 184, 255, 0.4);
+            z-index: 100 !important;
+        }
+
+        .tarot-card-container.selected {
+            transform: translate(var(--tw-translate-x), -150px) rotate(0deg) scale(1.1) !important;
+            box-shadow: 0 0 50px rgba(138, 43, 226, 0.8);
+            pointer-events: none;
+            z-index: 200 !important;
+        }
+
+        .tarot-card-container.selected .card-overlay {
+            background-color: rgba(138, 43, 226, 0.2);
+            opacity: 1;
+        }
+
+        .tarot-card-container.selected .card-glow-inner {
+            opacity: 1;
+        }
+
+        .card-glow-inner {
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(220, 184, 255, 0.5);
+            border-radius: inherit;
+            box-shadow: inset 0 0 20px rgba(220, 184, 255, 0.3);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(220, 184, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tarot-card-container:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .crystal-ball-glow {
+            filter: blur(40px);
+            background: radial-gradient(circle, rgba(220, 184, 255, 0.3) 0%, rgba(138, 43, 226, 0) 70%);
+        }
+
+        .floating-orb {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 0.9; }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 15px rgba(220, 184, 255, 0.8);
+        }
+
+        /* Hide scrollbar */
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="font-body-lg">
+<div class="star-field" id="particles-container"></div>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-edge py-4 fixed top-0 z-[60] bg-surface/60 backdrop-blur-[20px] border-b border-outline-variant/30 shadow-[0_0_30px_rgba(138,43,226,0.2)]">
+<div class="font-display-lg text-title-md font-bold text-primary tracking-widest drop-shadow-[0_0_15px_rgba(220,184,255,0.5)] uppercase">
+            운세왕국
+        </div>
+<nav class="hidden md:flex gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">오늘의 운세</a>
+<a class="font-label-sm text-label-sm text-primary font-bold border-b-2 border-primary pb-1" href="#">타로 보기</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">사주 풀이</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors duration-300" href="#">궁합 보기</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-on-surface-variant hover:text-primary transition-all duration-300 scale-95 active:scale-90">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+<button class="font-label-sm text-label-sm bg-primary-container/20 text-primary px-4 py-2 rounded-full border border-primary/30 hover:bg-primary-container/40 transition-all">
+                마이페이지
+            </button>
+</div>
+</header>
+<main class="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 overflow-hidden">
+<!-- Hero Section & Instruction -->
+<div class="text-center z-10 mb-12">
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg glow-text mb-4 text-primary">당신의 운명을 선택하세요</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto px-6">
+                우주의 에너지가 깃든 22장의 메이저 아르카나 카드가 당신을 기다립니다.<br/>
+                심호흡을 하고, 당신의 직관이 이끄는 <span class="text-secondary font-bold">3장의 카드</span>를 골라보세요.
+            </p>
+</div>
+<!-- Selection Progress -->
+<div class="z-20 mb-8 flex gap-4" id="selection-status">
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-outline-variant/50 flex items-center justify-center transition-all duration-500" id="slot-1">
+<span class="text-primary font-display-lg text-title-md">1</span>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-outline-variant/50 flex items-center justify-center transition-all duration-500" id="slot-2">
+<span class="text-primary font-display-lg text-title-md">2</span>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-dashed border-outline-variant/50 flex items-center justify-center transition-all duration-500" id="slot-3">
+<span class="text-primary font-display-lg text-title-md">3</span>
+</div>
+</div>
+<!-- Tarot Deck Container -->
+<div class="relative w-full max-w-[1400px] h-[550px] flex items-center justify-center z-30">
+<div class="relative w-full h-full flex items-center justify-center" id="tarot-deck">
+<!-- Cards will be injected by JS for precise fan layout -->
+</div>
+</div>
+<!-- Crystal Ball Area -->
+<div class="fixed bottom-[-100px] right-[-100px] w-[500px] h-[500px] z-0 pointer-events-none opacity-60">
+<div class="absolute inset-0 crystal-ball-glow rounded-full"></div>
+<div class="relative w-full h-full rounded-full bg-surface-container/30 backdrop-blur-[60px] border border-primary/20 overflow-hidden shadow-[inset_0_0_100px_rgba(220,184,255,0.2)]">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+<div class="absolute top-1/4 left-1/3 w-4 h-4 bg-primary rounded-full blur-md floating-orb"></div>
+<div class="absolute top-2/3 left-1/2 w-2 h-2 bg-secondary rounded-full blur-sm floating-orb" style="animation-delay: 1s"></div>
+<div class="absolute top-1/2 left-1/4 w-3 h-3 bg-white rounded-full blur-lg floating-orb" style="animation-delay: 2s"></div>
+</div>
+<img alt="Mystical crystal ball" class="absolute inset-0 object-cover opacity-20 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClNGxrPN6uCocBll2EKWgmSS99dL7XIoYBcOnHE9uRX_dTCuh5FgVoPtMkqa6YMvRQjBj-K7mmZHYoBXoQAHIbHTvb8aVWqFHQ6o69OtlWUKEvy-J6bzzYNpH47pS6XJgTWfMnN9GRHhzrM_pEFO4nVKRKmniqNmkNcVKt46dTy0ezncV80CnB5wQeeU74QnytVNoJTvhu13rVLUz9IeHZJpLS-Al4MyPgbdPhXl-06SKnensH1yGs5hFemZkeLTJouycMVg9ITOc"/>
+</div>
+<!-- Action Button (Revealed after selection) -->
+<div class="fixed bottom-32 left-1/2 -translate-x-1/2 z-50 hidden" id="reveal-btn-container">
+<button class="group relative px-12 py-5 bg-primary-container text-on-primary-container font-display-lg text-title-md rounded-full overflow-hidden shadow-[0_0_40px_rgba(138,43,226,0.5)] transition-all hover:scale-105 active:scale-95">
+<span class="relative z-10">운명의 결과 확인하기</span>
+<div class="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-edge flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant/20 bg-surface-container-lowest relative z-[60]">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-display-lg text-headline-lg text-primary tracking-tight">운세왕국</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md text-center md:text-left">
+                © 2024 운세왕국 (Fortune Kingdom). 당신의 운명은 별들 사이에 새겨져 있습니다.
+            </p>
+</div>
+<div class="flex gap-8 text-on-surface-variant font-label-sm text-label-sm tracking-wide">
+<a class="hover:text-primary transition-colors" href="#">이용약관</a>
+<a class="hover:text-primary transition-colors" href="#">개인정보처리방침</a>
+<a class="hover:text-primary transition-colors" href="#">제휴문의</a>
+<a class="hover:text-primary transition-colors" href="#">고객지원</a>
+</div>
+</footer>
+<script>
+        const deckContainer = document.getElementById('tarot-deck');
+        const selectionStatus = [
+            document.getElementById('slot-1'),
+            document.getElementById('slot-2'),
+            document.getElementById('slot-3')
+        ];
+        const revealBtn = document.getElementById('reveal-btn-container');
+        
+        let selectedCount = 0;
+        const totalCards = 22;
+
+        // Create Star Background
+        const starsContainer = document.getElementById('particles-container');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.style.position = 'absolute';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 2 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.backgroundColor = 'white';
+            star.style.borderRadius = '50%';
+            star.style.opacity = Math.random();
+            star.style.animation = `float ${Math.random() * 10 + 5}s infinite linear`;
+            starsContainer.appendChild(star);
+        }
+
+        // Initialize Tarot Cards in a 2D Arc Fan
+        for (let i = 0; i < totalCards; i++) {
+            const cardContainer = document.createElement('div');
+            cardContainer.className = 'tarot-card-container border border-primary/20 bg-surface-container-low';
+            
+            // 2D Spread Math (Refined Fan Spread)
+            const angleRange = 100; // Total arc angle
+            const startAngle = -angleRange / 2;
+            const angleStep = angleRange / (totalCards - 1);
+            const rotation = startAngle + (i * angleStep);
+            
+            const radius = 600;
+            const rad = (rotation * Math.PI) / 180;
+            const x = Math.sin(rad) * radius;
+            const y = (1 - Math.cos(rad)) * radius * 0.5;
+
+            cardContainer.style.setProperty('--tw-translate-x', `${x}px`);
+            cardContainer.style.setProperty('--tw-translate-y', `${y}px`);
+            cardContainer.style.setProperty('--tw-rotate', `${rotation}deg`);
+            
+            cardContainer.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+            cardContainer.style.zIndex = i;
+
+            // Card Image (Back) - Using https://lh3.googleusercontent.com/aida-public/AB6AXuBo5ZQxwG3zfkrrH8Rodrb2a10vPZUDe0vKZ22xcVwOhmzPaqZahFd8KuZlYGcMKefAcjdoXOWnshO8FaF4MIsH7LCSF-xaAGqI5jISzzFoxG5SH743rQS7zu79yr4NaOmwNg3ivpbk5gmFBrCmmdUrUhqxuIehQBnGuucCtfYBaU43tB-nnu-AnOJaH6Q8MWZ90j8EhG64lyDpJWNI6F3IDl1cFtj-b5sOTdseM46yly15OW3Ad0aeV0B6nVSkS9MoWvhC_Aye8A4
+            const cardImg = document.createElement('img');
+            cardImg.src = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBo5ZQxwG3zfkrrH8Rodrb2a10vPZUDe0vKZ22xcVwOhmzPaqZahFd8KuZlYGcMKefAcjdoXOWnshO8FaF4MIsH7LCSF-xaAGqI5jISzzFoxG5SH743rQS7zu79yr4NaOmwNg3ivpbk5gmFBrCmmdUrUhqxuIehQBnGuucCtfYBaU43tB-nnu-AnOJaH6Q8MWZ90j8EhG64lyDpJWNI6F3IDl1cFtj-b5sOTdseM46yly15OW3Ad0aeV0B6nVSkS9MoWvhC_Aye8A4';
+            cardImg.className = 'w-full h-full object-cover';
+            cardImg.alt = 'Tarot card back';
+            cardContainer.appendChild(cardImg);
+
+            // Inner Glow Layer
+            const glow = document.createElement('div');
+            glow.className = 'card-glow-inner';
+            cardContainer.appendChild(glow);
+
+            // Interaction Overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'card-overlay';
+            overlay.innerHTML = '<span class="material-symbols-outlined text-primary text-4xl opacity-80" style="font-variation-settings: \'FILL\' 0;">touch_app</span>';
+            cardContainer.appendChild(overlay);
+
+            // Click Interaction
+            cardContainer.addEventListener('click', () => {
+                if (selectedCount < 3 && !cardContainer.classList.contains('selected')) {
+                    cardContainer.classList.add('selected');
+                    
+                    // Update Overlay content for selection
+                    overlay.innerHTML = '<span class="material-symbols-outlined text-secondary text-5xl" style="font-variation-settings: \'FILL\' 1;">auto_awesome</span>';
+                    
+                    // Update Slot UI
+                    const slot = selectionStatus[selectedCount];
+                    slot.classList.remove('border-dashed', 'border-outline-variant/50');
+                    slot.classList.add('border-solid', 'border-secondary', 'bg-secondary/10', 'scale-110');
+                    slot.innerHTML = `<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>`;
+                    
+                    selectedCount++;
+
+                    if (selectedCount === 3) {
+                        setTimeout(() => {
+                            revealBtn.classList.remove('hidden');
+                            revealBtn.classList.add('flex', 'animate-bounce');
+                        }, 600);
+                    }
+                }
+            });
+
+            deckContainer.appendChild(cardContainer);
+        }
+    </script>
+</body></html>

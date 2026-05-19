@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background: radial-gradient(circle at 50% 50%, #1a1a2b 0%, #121222 100%);
+            overflow-x: hidden;
+        }
+        .nebula-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 170, 249, 0.1) 0%, transparent 40%);
+            filter: blur(60px);
+        }
+        .glass-card {
+            background: rgba(30, 30, 47, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 184, 255, 0.2);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(220, 184, 255, 0.6);
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.3);
+            transform: translateY(-8px);
+        }
+        .tarot-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .tarot-image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid transparent;
+            background: linear-gradient(45deg, #dcb8ff, transparent, #ffaaf9) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .bloom-glow {
+            filter: drop-shadow(0 0 12px rgba(220, 184, 255, 0.5));
+        }
+        @keyframes pulse-bloom {
+            0%, 100% { box-shadow: 0 0 20px rgba(138, 43, 226, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(138, 43, 226, 0.5); }
+        }
+        .animate-bloom {
+            animation: pulse-bloom 4s infinite ease-in-out;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "inverse-on-surface": "#2f2f40",
+                "surface-bright": "#38374a",
+                "secondary-container": "#96049d",
+                "inverse-surface": "#e3e0f8",
+                "primary-fixed": "#efdbff",
+                "secondary-fixed-dim": "#ffaaf9",
+                "surface-container-low": "#1a1a2b",
+                "surface-container-high": "#29283a",
+                "on-tertiary": "#2f3131",
+                "background": "#121222",
+                "surface-container": "#1e1e2f",
+                "surface-variant": "#333345",
+                "on-tertiary-fixed-variant": "#464747",
+                "on-secondary-fixed-variant": "#7f0086",
+                "tertiary-container": "#636464",
+                "on-primary-fixed": "#2c0051",
+                "on-primary": "#480081",
+                "primary-container": "#8a2be2",
+                "on-secondary-container": "#ffaff9",
+                "on-tertiary-fixed": "#1a1c1c",
+                "primary": "#dcb8ff",
+                "inverse-primary": "#8422dc",
+                "surface-container-lowest": "#0c0c1d",
+                "on-error": "#690005",
+                "error": "#ffb4ab",
+                "on-surface": "#e3e0f8",
+                "on-secondary": "#5a005f",
+                "error-container": "#93000a",
+                "secondary": "#ffaaf9",
+                "surface-dim": "#121222",
+                "on-surface-variant": "#cfc2d7",
+                "on-secondary-fixed": "#37003a",
+                "on-background": "#e3e0f8",
+                "outline": "#988ca0",
+                "tertiary-fixed-dim": "#c6c6c6",
+                "secondary-fixed": "#ffd6f8",
+                "on-error-container": "#ffdad6",
+                "surface-container-highest": "#333345",
+                "on-primary-container": "#eed9ff",
+                "on-primary-fixed-variant": "#6700b5",
+                "primary-fixed-dim": "#dcb8ff",
+                "surface-tint": "#dcb8ff",
+                "outline-variant": "#4c4354",
+                "surface": "#121222",
+                "tertiary": "#c6c6c6",
+                "tertiary-fixed": "#e3e2e2",
+                "on-tertiary-container": "#e2e1e1"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-edge": "4rem",
+                "container-max": "1440px",
+                "section-gap": "8rem",
+                "card-padding": "2.5rem",
+                "gutter": "2rem"
+            },
+            "fontFamily": {
+                "display-lg": ["Bodoni Moda"],
+                "headline-lg": ["Bodoni Moda"],
+                "label-sm": ["Manrope"],
+                "title-md": ["Be Vietnam Pro"],
+                "body-lg": ["Be Vietnam Pro"],
+                "headline-lg-mobile": ["Bodoni Moda"]
+            },
+            "fontSize": {
+                "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                "title-md": ["20px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="text-on-surface font-body-lg">
+<div class="nebula-bg"></div>
+<div id="stars-container"></div>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-margin-edge py-4 fixed top-0 z-50 bg-surface/60 backdrop-blur-[20px] border-b border-outline-variant/30 shadow-[0_0_30px_rgba(138,43,226,0.2)]">
+<div class="font-display-lg text-title-md font-bold text-primary tracking-widest drop-shadow-[0_0_15px_rgba(220,184,255,0.5)]">
+            운세왕국
+        </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm text-label-sm" href="#">오늘의 운세</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm" href="#">타로 보기</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm text-label-sm" href="#">사주 풀이</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-label-sm text-label-sm" href="#">궁합 보기</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary scale-95 active:scale-90 transition-transform">account_circle</button>
+<span class="hidden md:inline font-label-sm text-label-sm text-on-surface-variant">마이페이지</span>
+</div>
+</header>
+<main class="pt-32 pb-section-gap px-margin-edge max-w-container-max mx-auto">
+<!-- Result Header -->
+<div class="text-center mb-16 opacity-0 translate-y-4 transition-all duration-1000 ease-out" id="header-reveal">
+<h1 class="font-display-lg text-display-lg text-primary bloom-glow mb-4">당신의 운명, 세 가지 진실</h1>
+<p class="text-on-surface-variant font-title-md text-title-md max-w-2xl mx-auto">별들이 속삭이는 과거와 현재, 그리고 다가올 미래의 메시지를 확인하세요.</p>
+</div>
+<!-- Tarot Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-start">
+<!-- Card 1: Past -->
+<div class="glass-card p-card-padding rounded-xl flex flex-col items-center text-center opacity-0 translate-y-8 transition-all duration-700 delay-100 reveal-card">
+<span class="font-label-sm text-label-sm text-secondary tracking-[0.3em] mb-6">과거 (PAST)</span>
+<div class="tarot-image-container mb-8 w-full aspect-[2/3] max-w-[240px]">
+<img class="w-full h-full object-cover" data-alt="A mystical high-fidelity tarot card named The Hermit, featuring a wise old figure in a deep violet hooded cloak holding a glowing golden lantern amidst a swirling cosmic nebula. The card is framed with intricate gold filigree borders that shimmer with moonlight silver light. The atmosphere is serene and otherworldly, rendered in a cinematic dark fantasy style with rich indigos and soft pink glows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMWLL8x0RmcNMlEaB0P0A6_Ul0bs0YRgv-RywbrIYCzELhdrHF8OFZOvvTVbvLolEYkoKSHfrq5iBxLgq0DKVbw02iaC2Wq3CA9HihDXTKO3U0WwMADt7XjQDXa7_NcWgCgBwDIxe3qSiR2mLC3F8lYaSJ5nMp1hQxfgPGwPubxqJ3bQB2-DyFgZuP9mnYhpEhTJ37BgcmQQidOHZfMhXTVWzJHd1U_DsKt_fAS1Z38o7F2o8-E8wA1I7mv4oY2rkNcGYArXmgA-o"/>
+</div>
+<h3 class="font-headline-lg text-title-md text-primary mb-4">은둔자 (The Hermit)</h3>
+<p class="text-on-surface-variant leading-relaxed">당신은 지난 시간 동안 내면의 목소리에 귀를 기울이며 깊은 성찰의 시간을 가졌습니다. 그 고독함은 외로움이 아닌, 지혜를 향한 필연적인 여정이었습니다.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 text-left">
+<span class="font-label-sm text-label-sm text-secondary block mb-2 underline underline-offset-4 decoration-primary/30">상세 의미 (Details)</span>
+<p class="text-on-surface-variant/80 text-sm italic">자신만의 시간을 통해 얻은 깨달음이 현재의 당신을 지탱하는 강력한 뿌리가 되었습니다. 과거의 침묵은 성장을 위한 양분이었습니다.</p>
+</div></div>
+<!-- Card 2: Present -->
+<div class="glass-card p-card-padding rounded-xl flex flex-col items-center text-center opacity-0 translate-y-8 transition-all duration-700 delay-300 reveal-card border-primary/40">
+<span class="font-label-sm text-label-sm text-secondary tracking-[0.3em] mb-6">현재 (PRESENT)</span>
+<div class="tarot-image-container mb-8 w-full aspect-[2/3] max-w-[240px] shadow-[0_0_30px_rgba(220,184,255,0.3)]">
+<img class="w-full h-full object-cover" data-alt="A luxury tarot card illustration of The Lovers, showing two ethereal silhouettes merging within a crystalline garden under a massive, glowing moon. The scene is bathed in vibrant neon violet and soft magenta light, with sparkling stardust floating in the air. High-contrast modern visual style with frosted glass textures and a regal, cinematic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9ha_6ueZsPu3uDE1P5-0yjWA4u7xigyutWVIRHeuHnNU1md7D5HBTojNqKxJxlzWY_b8vhzuQn6YHwiih3I8yvehKe8tqUvMd-lCLSDqMr3Ng43RwqWI6kzRIrxEzmcfsHjYXtwwgRvA8geQXxHQ5rdTnvUf-BPiU8hgTOmmQDnEMQcp_db3ElOxCmIojNFNzzbxtE2hKiOnS3hNeqfX3KfMrZux8G6kKMdRpg2URM3NC1C5zi13DAwqNn_B4zntCuAHM0mAaLMI"/>
+</div>
+<h3 class="font-headline-lg text-title-md text-primary mb-4">연인 (The Lovers)</h3>
+<p class="text-on-surface-variant leading-relaxed">지금 당신 앞에 중요한 선택의 기로가 놓여 있습니다. 머리가 아닌 가슴의 울림을 따라가세요. 당신의 조화로운 에너지가 소중한 인연을 끌어당기고 있습니다.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 text-left">
+<span class="font-label-sm text-label-sm text-secondary block mb-2 underline underline-offset-4 decoration-primary/30">상세 의미 (Details)</span>
+<p class="text-on-surface-variant/80 text-sm italic">단순한 선택을 넘어 가치관의 일치를 경험하는 시기입니다. 당신이 내리는 결정은 주변과의 조화를 이끌어내는 열쇠가 될 것입니다.</p>
+</div></div>
+<!-- Card 3: Future -->
+<div class="glass-card p-card-padding rounded-xl flex flex-col items-center text-center opacity-0 translate-y-8 transition-all duration-700 delay-500 reveal-card">
+<span class="font-label-sm text-label-sm text-secondary tracking-[0.3em] mb-6">미래 (FUTURE)</span>
+<div class="tarot-image-container mb-8 w-full aspect-[2/3] max-w-[240px]">
+<img class="w-full h-full object-cover" data-alt="A stunning tarot card depicting The Star, showing a celestial maiden pouring liquid light from silver vessels into a pool of cosmic energy. Bright, thin glowing lines form constellations in the deep indigo sky above. The image uses a dreamy galaxy background with soft light bloom effects and a sophisticated palette of moonlight silver and vibrant violet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjWAHynSfc7J8rF8RH05XPoWNHw7198QGUKpehRbAplRw-UnNd8V5YBXi6Kv7HnU9T6cWumglVlMvT4raq59i7kqaW0gzDiqpklSDCJgdqbFhB4B3b0XIWNJIS8GRJC5bUEcwFayVYd9Av7a5fpsxA1oa8iF5dW4QqJjrIfUlnov9HhZsO9ed28ofVNdYJD-whRGbNTkqffV5N6Xg-6uU4td3eRXRumguo5Jx49I9JQov_r04hG7Go_fOjtnmEeB0Pi1xrZGQujr8"/>
+</div>
+<h3 class="font-headline-lg text-title-md text-primary mb-4">별 (The Star)</h3>
+<p class="text-on-surface-variant leading-relaxed">오랜 기다림 끝에 희망의 빛이 보이기 시작합니다. 당신의 꿈이 현실의 별자리에 새겨지고 있습니다. 투명한 믿음이 당신을 성공으로 안내할 것입니다.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/30 text-left">
+<span class="font-label-sm text-label-sm text-secondary block mb-2 underline underline-offset-4 decoration-primary/30">상세 의미 (Details)</span>
+<p class="text-on-surface-variant/80 text-sm italic">어둠이 걷히고 선명한 길이 열립니다. 지금의 노력이 결실을 맺어 타인에게도 영감을 주는 빛나는 존재가 될 것임을 예고합니다.</p>
+</div></div>
+</div><section class="mt-20 glass-card bg-surface-container-low/50 p-card-padding rounded-xl max-w-4xl mx-auto shadow-[0_0_40px_rgba(138,43,226,0.15)] border border-primary/20">
+<div class="text-center mb-8">
+<h2 class="font-display-lg text-headline-lg text-primary bloom-glow mb-4">성좌가 전하는 종합적인 운명의 메시지</h2>
+<div class="w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent mx-auto"></div>
+</div>
+<div class="space-y-6 text-center">
+<p class="text-on-surface leading-relaxed font-body-lg">
+            당신의 여정은 고독한 성찰에서 시작되어(과거), 진실된 선택의 순간(현재)을 지나, 마침내 찬란한 희망의 결실(미래)로 향하고 있습니다. 과거에 스스로에게 던졌던 질문들이 이제는 '연인' 카드가 상징하는 조화로운 관계로 답을 찾고 있습니다.
+        </p>
+<p class="text-on-surface leading-relaxed font-body-lg">
+            지금 마주한 선택은 당신의 미래를 결정짓는 중요한 분기점입니다. 망설이지 말고 당신의 내면이 이끄는 대로 나아가세요. '별'의 기운이 당신을 보호하고 있으며, 당신이 꿈꾸는 이상향은 이미 우주의 계획 속에 포함되어 있습니다. 조만간 당신의 노력이 결실을 맺어 주변을 밝히는 빛이 될 것입니다.
+        </p>
+<div class="flex justify-center gap-2 text-secondary">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+</div>
+</section>
+<!-- Action Section -->
+<div class="mt-20 flex flex-col md:flex-row justify-center items-center gap-6">
+<button class="bg-primary-container text-on-primary-container px-12 py-4 rounded-full font-label-sm text-label-sm flex items-center gap-2 transition-all duration-300 hover:scale-105 animate-bloom group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">share</span>
+                결과 공유하기
+            </button>
+<button class="border border-outline text-on-surface px-12 py-4 rounded-full font-label-sm text-label-sm flex items-center gap-2 transition-all duration-300 hover:bg-surface-variant hover:border-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+                운세 저장하기
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-edge flex flex-col md:flex-row justify-between items-center gap-gutter border-t border-outline-variant/20 bg-surface-container-lowest/80 backdrop-blur-md">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="font-display-lg text-headline-lg text-primary">운세왕국</div>
+<p class="font-body-lg text-body-lg text-tertiary text-center md:text-left">© 2024 운세왕국 (Fortune Kingdom). 당신의 운명은 별들 사이에 새겨져 있습니다.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">이용약관</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">개인정보처리방침</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">제휴문의</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">고객지원</a>
+</div>
+</footer>
+<script>
+        // Star generator for background
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animation = `pulse ${Math.random() * 3 + 2}s infinite ease-in-out`;
+            container.appendChild(star);
+        }
+
+        // Reveal animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('header-reveal').classList.remove('opacity-0', 'translate-y-4');
+                const cards = document.querySelectorAll('.reveal-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.remove('opacity-0', 'translate-y-8');
+                    }, 200 * (index + 1));
+                });
+            }, 100);
+        });
+
+        // Mouse hover interaction for cards (glow tracking)
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(220,184,255,0.1) 0%, rgba(30, 30, 47, 0.4) 70%)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.background = 'rgba(30, 30, 47, 0.4)';
+            });
+        });
+    </script>
+<style>
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+    </style>
+</body></html>

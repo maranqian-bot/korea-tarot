@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>운세왕국 - 운명 기록소</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:ital,wght@0,100..900;1,100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#2f2f40",
+                    "surface-bright": "#38374a",
+                    "secondary-container": "#96049d",
+                    "inverse-surface": "#e3e0f8",
+                    "primary-fixed": "#efdbff",
+                    "secondary-fixed-dim": "#ffaaf9",
+                    "surface-container-low": "#1a1a2b",
+                    "surface-container-high": "#29283a",
+                    "on-tertiary": "#2f3131",
+                    "background": "#121222",
+                    "surface-container": "#1e1e2f",
+                    "surface-variant": "#333345",
+                    "on-tertiary-fixed-variant": "#464747",
+                    "on-secondary-fixed-variant": "#7f0086",
+                    "tertiary-container": "#636464",
+                    "on-primary-fixed": "#2c0051",
+                    "on-primary": "#480081",
+                    "primary-container": "#8a2be2",
+                    "on-secondary-container": "#ffaff9",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "primary": "#dcb8ff",
+                    "inverse-primary": "#8422dc",
+                    "surface-container-lowest": "#0c0c1d",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "on-surface": "#e3e0f8",
+                    "on-secondary": "#5a005f",
+                    "error-container": "#93000a",
+                    "secondary": "#ffaaf9",
+                    "surface-dim": "#121222",
+                    "on-surface-variant": "#cfc2d7",
+                    "on-secondary-fixed": "#37003a",
+                    "on-background": "#e3e0f8",
+                    "outline": "#988ca0",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "secondary-fixed": "#ffd6f8",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#333345",
+                    "on-primary-container": "#eed9ff",
+                    "on-primary-fixed-variant": "#6700b5",
+                    "primary-fixed-dim": "#dcb8ff",
+                    "surface-tint": "#dcb8ff",
+                    "outline-variant": "#4c4354",
+                    "surface": "#121222",
+                    "tertiary": "#c6c6c6",
+                    "tertiary-fixed": "#e3e2e2",
+                    "on-tertiary-container": "#e2e1e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-edge": "4rem",
+                    "container-max": "1440px",
+                    "section-gap": "8rem",
+                    "card-padding": "2.5rem",
+                    "gutter": "2rem"
+            },
+            "fontFamily": {
+                    "display-lg": ["Bodoni Moda"],
+                    "headline-lg": ["Bodoni Moda"],
+                    "label-sm": ["Manrope"],
+                    "title-md": ["Be Vietnam Pro"],
+                    "body-lg": ["Be Vietnam Pro"],
+                    "headline-lg-mobile": ["Bodoni Moda"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "title-md": ["20px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "1.7", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background: radial-gradient(circle at 50% 50%, #1e1e2f 0%, #121222 100%);
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(26, 26, 43, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(220, 184, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(220, 184, 255, 0.5);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .bloom-glow {
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.4);
+        }
+
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, rgba(220, 184, 255, 0.3), transparent);
+        }
+
+        .fog-effect {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 10% 20%, rgba(138, 43, 226, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 170, 249, 0.05) 0%, transparent 40%);
+            z-index: 1;
+        }
+
+        .constellation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(white, rgba(255,255,255,0.2) 2px, transparent 40px);
+            background-size: 550px 550px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        @keyframes pulse-bloom {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .animate-pulse-bloom {
+            animation: pulse-bloom 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg">
+<div class="fog-effect"></div>
+<div class="constellation"></div>
+<!-- TopAppBar -->
+<nav class="flex justify-between items-center w-full px-margin-edge py-4 fixed top-0 z-50 bg-surface/60 backdrop-blur-[20px] border-b border-outline-variant/30 shadow-[0_0_30px_rgba(138,43,226,0.2)]">
+<div class="font-display-lg text-title-md font-bold text-primary tracking-widest drop-shadow-[0_0_15px_rgba(220,184,255,0.5)]">
+            운세왕국
+        </div>
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-body-lg text-body-lg" href="#">오늘의 운세</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-body-lg text-body-lg" href="#">타로 보기</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-body-lg text-body-lg" href="#">사주 풀이</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors duration-300 font-body-lg text-body-lg" href="#">궁합 보기</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary font-bold border-b-2 border-primary pb-1 font-label-sm text-label-sm">마이페이지</button>
+<span class="material-symbols-outlined text-primary cursor-pointer transition-transform active:scale-90" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="relative z-10 pt-32 pb-section-gap px-margin-edge max-w-container-max mx-auto">
+<!-- Hero Header -->
+<header class="text-center mb-16">
+<h1 class="font-display-lg text-display-lg text-primary mb-4 drop-shadow-[0_0_20px_rgba(220,184,255,0.3)]">운명 기록소</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                당신의 과거를 비추는 별들의 궤적입니다. 흘러간 운명의 조각들을 다시 살펴보며 다가올 미래의 실마리를 찾아보세요.
+            </p>
+</header>
+<div class="relative">
+<!-- Vertical Timeline Line -->
+<div class="absolute left-1/2 transform -translate-x-1/2 w-px h-full timeline-line hidden md:block"></div>
+<div class="space-y-12 relative">
+<!-- Timeline Entry 1 -->
+<div class="flex flex-col md:flex-row items-center justify-between group">
+<div class="w-full md:w-[45%] order-2 md:order-1">
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden cursor-pointer" onclick="openDetail('2024.05.20')">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container bloom-glow"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-sm text-label-sm text-secondary tracking-widest block mb-1">2024.05.20</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">심야의 타로: 연인</h3>
+</div>
+<span class="material-symbols-outlined text-primary-container" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<p class="text-on-surface-variant font-body-lg line-clamp-2">
+                                새로운 인연이 다가오고 있습니다. 진실된 마음으로 소통한다면 뜻밖의 행운이 당신을 찾아올 것입니다.
+                            </p>
+<div class="mt-6 flex items-center text-primary font-label-sm text-label-sm">
+<span>REVISIT THE STAR'S MESSAGE</span>
+<span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<div class="relative z-20 flex items-center justify-center w-12 h-12 rounded-full glass-card border-primary bloom-glow mb-4 md:mb-0 order-1 md:order-2">
+<div class="w-3 h-3 bg-primary rounded-full animate-pulse-bloom"></div>
+</div>
+<div class="w-full md:w-[45%] order-3 hidden md:block"></div>
+</div>
+<!-- Timeline Entry 2 -->
+<div class="flex flex-col md:flex-row items-center justify-between group">
+<div class="w-full md:w-[45%] order-3 hidden md:block"></div>
+<div class="relative z-20 flex items-center justify-center w-12 h-12 rounded-full glass-card border-secondary-fixed-dim bloom-glow mb-4 md:mb-0 order-1 md:order-2">
+<div class="w-3 h-3 bg-secondary rounded-full animate-pulse-bloom"></div>
+</div>
+<div class="w-full md:w-[45%] order-2">
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden cursor-pointer" onclick="openDetail('2024.05.15')">
+<div class="absolute top-0 right-0 w-1 h-full bg-secondary bloom-glow"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-sm text-label-sm text-primary tracking-widest block mb-1">2024.05.15</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">정통 사주: 금전운</h3>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="paid">paid</span>
+</div>
+<p class="text-on-surface-variant font-body-lg line-clamp-2">
+                                재물의 흐름이 서쪽에서 동쪽으로 이동합니다. 과감한 투자보다는 현재의 자산을 지키는 것이 상책입니다.
+                            </p>
+<div class="mt-6 flex items-center text-secondary font-label-sm text-label-sm">
+<span>REVISIT THE STAR'S MESSAGE</span>
+<span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Timeline Entry 3 -->
+<div class="flex flex-col md:flex-row items-center justify-between group">
+<div class="w-full md:w-[45%] order-2 md:order-1">
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden cursor-pointer" onclick="openDetail('2024.05.08')">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary-container bloom-glow"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-sm text-label-sm text-tertiary tracking-widest block mb-1">2024.05.08</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">월간 종합 운세</h3>
+</div>
+<span class="material-symbols-outlined text-tertiary" data-icon="nights_stay">nights_stay</span>
+</div>
+<p class="text-on-surface-variant font-body-lg line-clamp-2">
+                                5월은 변화의 달입니다. 익숙한 곳을 떠나 새로운 도전을 시작하기에 더할 나위 없이 좋은 시기입니다.
+                            </p>
+<div class="mt-6 flex items-center text-tertiary font-label-sm text-label-sm">
+<span>REVISIT THE STAR'S MESSAGE</span>
+<span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<div class="relative z-20 flex items-center justify-center w-12 h-12 rounded-full glass-card border-tertiary bloom-glow mb-4 md:mb-0 order-1 md:order-2">
+<div class="w-3 h-3 bg-tertiary rounded-full animate-pulse-bloom"></div>
+</div>
+<div class="w-full md:w-[45%] order-3 hidden md:block"></div>
+</div>
+<!-- Timeline Entry 4 -->
+<div class="flex flex-col md:flex-row items-center justify-between group">
+<div class="w-full md:w-[45%] order-3 hidden md:block"></div>
+<div class="relative z-20 flex items-center justify-center w-12 h-12 rounded-full glass-card border-primary bloom-glow mb-4 md:mb-0 order-1 md:order-2">
+<div class="w-3 h-3 bg-primary rounded-full animate-pulse-bloom"></div>
+</div>
+<div class="w-full md:w-[45%] order-2">
+<div class="glass-card p-card-padding rounded-xl relative overflow-hidden cursor-pointer" onclick="openDetail('2024.04.30')">
+<div class="absolute top-0 right-0 w-1 h-full bg-primary bloom-glow"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="font-label-sm text-label-sm text-primary tracking-widest block mb-1">2024.04.30</span>
+<h3 class="font-headline-lg text-title-md text-on-surface">타로: 운명의 수레바퀴</h3>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="flare">flare</span>
+</div>
+<p class="text-on-surface-variant font-body-lg line-clamp-2">
+                                거스를 수 없는 큰 변화가 찾아오고 있습니다. 유연한 태도로 파도를 타십시오.
+                            </p>
+<div class="mt-6 flex items-center text-primary font-label-sm text-label-sm">
+<span>REVISIT THE STAR'S MESSAGE</span>
+<span class="material-symbols-outlined ml-2 text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Featured Section (Bento Style) -->
+<section class="mt-section-gap">
+<h2 class="font-display-lg text-headline-lg text-center text-on-surface mb-12">나의 운명 분석</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-card md:col-span-2 p-card-padding rounded-xl flex flex-col justify-between aspect-video md:aspect-auto">
+<div>
+<h4 class="font-headline-lg text-title-md text-primary mb-4">가장 많이 뽑은 카드</h4>
+<div class="flex items-center gap-8">
+<div class="w-24 h-36 rounded-lg border border-primary/40 bg-primary/10 flex items-center justify-center shadow-[0_0_20px_rgba(220,184,255,0.2)]">
+<span class="material-symbols-outlined text-5xl text-primary" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<p class="text-on-surface text-title-md font-display-lg">The Star (별)</p>
+<p class="text-on-surface-variant text-body-lg mt-2">희망과 영감의 상징. 당신의 무의식은 밝은 미래를 갈망하고 있습니다.</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[75%] bloom-glow"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-2 text-right">출현 빈도 75%</p>
+</div>
+</div>
+<div class="glass-card p-card-padding rounded-xl flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-6xl mb-4" data-icon="hourglass_empty">hourglass_empty</span>
+<h4 class="font-headline-lg text-title-md text-secondary mb-2">총 기록 시간</h4>
+<p class="text-on-surface text-display-lg font-display-lg">128<span class="text-title-md ml-1">Days</span></p>
+<p class="text-on-surface-variant text-body-lg mt-4">운명과 함께한 소중한 시간들</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap px-margin-edge flex flex-col md:flex-row justify-between items-center gap-gutter bg-surface-container-lowest/80 backdrop-blur-md border-t border-outline-variant/20 relative z-20">
+<div class="flex flex-col gap-4">
+<div class="font-display-lg text-headline-lg text-primary">운세왕국</div>
+<p class="text-on-surface-variant font-body-lg text-body-lg">© 2024 운세왕국 (Fortune Kingdom). 당신의 운명은 별들 사이에 새겨져 있습니다.</p>
+</div>
+<div class="flex gap-gutter">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">이용약관</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">개인정보처리방침</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-lg text-body-lg" href="#">고객지원</a>
+</div>
+</footer>
+<!-- Detail Overlay (Mockup) -->
+<div class="fixed inset-0 z-[100] bg-background/90 backdrop-blur-xl flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500" id="detailOverlay">
+<div class="glass-card max-w-2xl w-[90%] p-12 rounded-2xl relative">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors" onclick="closeDetail()">
+<span class="material-symbols-outlined text-3xl" data-icon="close">close</span>
+</button>
+<div id="detailContent">
+<span class="font-label-sm text-label-sm text-primary tracking-widest mb-2 block" id="detailDate"></span>
+<h2 class="font-display-lg text-headline-lg text-on-surface mb-6" id="detailTitle"></h2>
+<div class="w-full h-px bg-outline-variant/30 mb-8"></div>
+<div class="prose prose-invert max-w-none">
+<p class="text-on-surface-variant text-body-lg leading-relaxed mb-8" id="detailDesc"></p>
+<div class="p-8 rounded-lg bg-primary-container/10 border border-primary/20 italic text-on-primary-container">
+                        "별들이 말하길, 오늘의 인연이 내일의 기적을 낳을 것입니다. 조급해하지 마십시오."
+                    </div>
+</div>
+<div class="mt-12 flex justify-center">
+<button class="bg-primary-container text-on-primary-container px-10 py-4 rounded-full font-bold hover:scale-105 active:scale-95 transition-all bloom-glow">
+                        메시지 공유하기
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function openDetail(date) {
+            const overlay = document.getElementById('detailOverlay');
+            const dDate = document.getElementById('detailDate');
+            const dTitle = document.getElementById('detailTitle');
+            const dDesc = document.getElementById('detailDesc');
+
+            dDate.innerText = date;
+            if(date === '2024.05.20') {
+                dTitle.innerText = "심야의 타로: 연인 (The Lovers)";
+                dDesc.innerText = "연인 카드는 조화와 소통을 의미합니다. 오늘 당신이 만나는 사람은 단순한 인연 이상일 수 있습니다. 당신의 마음을 솔직하게 표현하고 상대방의 이야기에 귀를 기울이세요. 그것이 관계의 열쇠가 될 것입니다.";
+            } else {
+                dTitle.innerText = "운명의 재해석";
+                dDesc.innerText = "기록된 운명은 변하지 않지만, 당신의 시선은 변할 수 있습니다. 과거의 조언을 현재의 상황에 대입해 보세요. 새로운 지혜가 발견될 것입니다.";
+            }
+
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+        }
+
+        function closeDetail() {
+            const overlay = document.getElementById('detailOverlay');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+        }
+
+        // Particle background movement effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            const constellation = document.querySelector('.constellation');
+            const fog = document.querySelector('.fog-effect');
+            
+            const moveX = (mouseX - 0.5) * 20;
+            const moveY = (mouseY - 0.5) * 20;
+            
+            constellation.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            fog.style.transform = `translate(${moveX * 0.5}px, ${moveY * 0.5}px)`;
+        });
+    </script>
+</body></html>
